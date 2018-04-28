@@ -12,3 +12,7 @@ sleep 5
 ClusterIP=$(kubectl get svc/storageos --namespace default -o custom-columns=IP:spec.clusterIP --no-headers=true)
 ApiAddress=$(echo -n "tcp://$ClusterIP:5705" | base64)
 kubectl patch secret/storageos-api --namespace default --patch "{\"data\": {\"apiAddress\": \"$ApiAddress\"}}"
+
+
+# set up storageos access
+export STORAGEOS_HOST=$(kubectl get svc/storageos --namespace default -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
