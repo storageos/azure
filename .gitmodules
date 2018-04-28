@@ -1,0 +1,3 @@
+[submodule "helm-chart"]
+	path = storageos
+	url = git@github.com:storageos/helm-chart.git
